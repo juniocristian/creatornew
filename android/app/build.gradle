@@ -1,6 +1,8 @@
-apply plugin: 'com.android.application'
-apply plugin: 'kotlin-android'
-apply plugin: 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+plugins {
+    id 'com.android.application'
+    id 'kotlin-android'
+    id 'com.onesignal.androidsdk.onesignal-gradle-plugin'
+}
 
 def localProperties = new Properties()
 def localPropertiesFile = rootProject.file('local.properties')
@@ -64,7 +66,8 @@ android {
     buildTypes {
         release {
             signingConfig signingConfigs.release
-            minifyEnabled false
+            minifyEnabled true // Habilitar shrink
+            shrinkResources true // Habilitar a remoção de recursos não utilizados
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
         }
     }
